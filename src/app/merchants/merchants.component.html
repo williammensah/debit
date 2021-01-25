@@ -1,0 +1,94 @@
+
+<div class="container text-center" id="form">
+    <div class="card">
+            <mat-horizontal-stepper [linear]="isLinear"  #stepper>
+                <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Merchant Info</ng-template>
+
+                    <mat-form-field class = "tp-full-width">
+                    <mat-label>TransflowID</mat-label>
+                    <input matInput placeholder="Enter Transflow ID" 
+                    formControlName="firstCtrl" required>
+                    </mat-form-field>
+
+                    <mat-form-field class = "tp-full-width">
+                        <mat-label>Merchant Name</mat-label>
+                        <input matInput placeholder="Enter Merchant Name" formControlName="firstCtrl" required>
+                     </mat-form-field>
+
+                     <mat-form-field class = "tp-full-width">
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput placeholder="Enter Phone Number" 
+                        formControlName="firstCtrl" required>
+                     </mat-form-field>
+
+                     <mat-form-field class = "tp-full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Enter Email Address" 
+                        formControlName="firstCtrl" required>
+                     </mat-form-field>
+
+                    <div>
+                    <p>Go to a next step to setup branch</p>
+                    <button mat-button matStepperNext>Next</button>
+                    <button mat-button>Back</button>
+                    </div>
+                </form>
+                </mat-step>
+                <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Branch Info</ng-template>
+                    <mat-form-field class = "tp-full-width">
+                    <mat-label>Branch Name</mat-label>
+                    <input matInput placeholder="Enter Branch Name" 
+                    formControlName="secondCtrl" required>
+                    </mat-form-field>
+
+                    <mat-form-field class = "tp-full-width">
+                        <mat-label>Branch Code</mat-label>
+                        <input matInput placeholder="Enter Branch Code" 
+                        formControlName="firstCtrl" required>
+                     </mat-form-field>
+
+                     <mat-form-field class = "tp-full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Enter Email" 
+                        formControlName="firstCtrl" required>
+                     </mat-form-field>
+
+                     <mat-form-field class = "tp-full-width">
+                        <mat-label>Location</mat-label>
+                        <input matInput placeholder="Enter Location" 
+                        formControlName="firstCtrl" required>
+                     </mat-form-field>
+
+                     <mat-form-field class = "tp-full-width">
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput placeholder="Enter Phone Number" 
+                        formControlName="firstCtrl" required>
+                     </mat-form-field>
+
+                    <div>
+                    <p>Go to a different step to see the error state</p>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+                </mat-step>
+
+                 <mat-step [stepControl]="thirdFormGroup" erroMessage ="Email is required">
+                        
+                 </mat-step>
+                <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done.</p>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+    </div>
+</div>
+  

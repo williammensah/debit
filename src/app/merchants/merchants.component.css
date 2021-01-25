@@ -1,0 +1,52 @@
+/*
+
+.card{
+  background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 4px );
+-webkit-backdrop-filter: blur( 4px );
+border-radius: 10px;
+}
+
+
+*/
+
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,900|Montserrat|Roboto");
+ * {
+	 padding: 0;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+#form{
+  padding-top: 100px;
+} 
+
+.tp-full-width{
+  width: 100%;
+}
+ 
+ .card {
+	 background: linear-gradient(-45deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.1));
+	 width: 800px;
+	 height: 600px;
+	 position: relative;
+	 margin: auto auto;
+	 margin-top: 5%;
+	 border-radius: 5px;
+   box-shadow: 2px 4px 6px rgba(55, 52, 73, 0.4), inset -2px -2px 4px rgba(255, 255, 255, 1);
+   
+}
+
+/* .card {
+  float: right;
+  padding: 10px 20px;
+  width: 70%;
+} */
+ 
+ 
+ 
+ 
+
