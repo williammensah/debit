@@ -1,94 +1,385 @@
-
 <div class="container text-center" id="form">
-    <div class="card">
-            <mat-horizontal-stepper [linear]="isLinear"  #stepper>
-                <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
-                <form [formGroup]="firstFormGroup">
-                    <ng-template matStepLabel>Merchant Info</ng-template>
+  <div class="card">
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Merchant Info</ng-template>
 
-                    <mat-form-field class = "tp-full-width">
-                    <mat-label>TransflowID</mat-label>
-                    <input matInput placeholder="Enter Transflow ID" 
-                    formControlName="firstCtrl" required>
-                    </mat-form-field>
+          <mat-form-field class="tp-full-width">
+            <mat-label>TransflowID</mat-label>
+            <input
+              matInput
+              placeholder="Enter Transflow ID"
+              formControlName="transflowId"
+              required
+            />
+            <mat-error
+              *ngIf="
+                firstFormGroup.get('transflowId').hasError('required') &&
+                firstFormGroup.get('transflowId').touched
+              "
+              >transflowId is required.
+            </mat-error>
+          </mat-form-field>
 
-                    <mat-form-field class = "tp-full-width">
-                        <mat-label>Merchant Name</mat-label>
-                        <input matInput placeholder="Enter Merchant Name" formControlName="firstCtrl" required>
-                     </mat-form-field>
+          <mat-form-field class="tp-full-width">
+            <mat-label>Merchant Name</mat-label>
+            <input
+              matInput
+              placeholder="Enter Merchant Name"
+              formControlName="merchantName"
+              required
+            />
+            <mat-error
+              *ngIf="
+                firstFormGroup.get('merchantName').hasError('required') &&
+                firstFormGroup.get('merchantName').touched
+              "
+              >merchant Name is required.
+            </mat-error>
+          </mat-form-field>
 
-                     <mat-form-field class = "tp-full-width">
-                        <mat-label>Phone Number</mat-label>
-                        <input matInput placeholder="Enter Phone Number" 
-                        formControlName="firstCtrl" required>
-                     </mat-form-field>
+          <mat-form-field class="tp-full-width">
+            <mat-label>Phone Number</mat-label>
+            <input
+              matInput
+              placeholder="Enter Phone Number"
+              formControlName="merchantPhoneNumber"
+              required
+            />
+            <mat-error
+              *ngIf="
+                firstFormGroup
+                  .get('merchantPhoneNumber')
+                  .hasError('required') &&
+                firstFormGroup.get('merchantPhoneNumber').touched
+              "
+              >PhoneNumber is required.
+            </mat-error>
+          </mat-form-field>
 
-                     <mat-form-field class = "tp-full-width">
-                        <mat-label>Email</mat-label>
-                        <input matInput placeholder="Enter Email Address" 
-                        formControlName="firstCtrl" required>
-                     </mat-form-field>
+          <mat-form-field class="tp-full-width">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Enter Email Address"
+              formControlName="merchantEmail"
+              required
+            />
+            <mat-error
+              *ngIf="
+                firstFormGroup.get('merchantEmail').hasError('required') &&
+                firstFormGroup.get('merchantEmail').touched
+              "
+              >Email is required.
+            </mat-error>
+            <mat-error
+              *ngIf="
+                firstFormGroup.get('merchantEmail').hasError('email') &&
+                firstFormGroup.get('merchantEmail').touched
+              "
+              >Email is not valid.
+            </mat-error>
+          </mat-form-field>
 
-                    <div>
-                    <p>Go to a next step to setup branch</p>
-                    <button mat-button matStepperNext>Next</button>
-                    <button mat-button>Back</button>
-                    </div>
-                </form>
-                </mat-step>
-                <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
-                <form [formGroup]="secondFormGroup">
-                    <ng-template matStepLabel>Branch Info</ng-template>
-                    <mat-form-field class = "tp-full-width">
-                    <mat-label>Branch Name</mat-label>
-                    <input matInput placeholder="Enter Branch Name" 
-                    formControlName="secondCtrl" required>
-                    </mat-form-field>
+          <div>
+            <p>Go to the next step to setup branch</p>
+            <button mat-button matStepperNext>Next</button>
+            <!-- <button mat-button>Back</button> -->
+          </div>
+        </form>
+      </mat-step>
+      <mat-step
+        [stepControl]="secondFormGroup"
+        errorMessage="Address is required."
+      >
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Branch Info</ng-template>
+          <mat-form-field class="tp-full-width">
+            <mat-label>Branch Name</mat-label>
+            <input
+              matInput
+              placeholder="Enter Branch Name"
+              formControlName="branchName"
+              required
+            />
+            <mat-error
+              *ngIf="
+                secondFormGroup.get('branchName').hasError('required') &&
+                secondFormGroup.get('branchName').touched
+              "
+              >Branch Name is required.
+            </mat-error>
+          </mat-form-field>
 
-                    <mat-form-field class = "tp-full-width">
-                        <mat-label>Branch Code</mat-label>
-                        <input matInput placeholder="Enter Branch Code" 
-                        formControlName="firstCtrl" required>
-                     </mat-form-field>
+          <mat-form-field class="tp-full-width">
+            <mat-label>Branch Code</mat-label>
+            <input
+              matInput
+              placeholder="Enter Branch Code"
+              formControlName="branchCode"
+              required
+            />
+            <mat-error
+              *ngIf="
+                secondFormGroup.get('branchCode').hasError('required') &&
+                secondFormGroup.get('branchCode').touched
+              "
+              >Branch Code is required.
+            </mat-error>
+            <mat-error
+              *ngIf="
+                secondFormGroup.get('branchCode').hasError('max') &&
+                secondFormGroup.get('branchCode').touched
+              "
+              >Branch Code max length should be 7 .
+            </mat-error>
+          </mat-form-field>
 
-                     <mat-form-field class = "tp-full-width">
-                        <mat-label>Email</mat-label>
-                        <input matInput placeholder="Enter Email" 
-                        formControlName="firstCtrl" required>
-                     </mat-form-field>
+          <mat-form-field class="tp-full-width">
+            <mat-label>Email</mat-label>
 
-                     <mat-form-field class = "tp-full-width">
-                        <mat-label>Location</mat-label>
-                        <input matInput placeholder="Enter Location" 
-                        formControlName="firstCtrl" required>
-                     </mat-form-field>
+            <input
+              matInput
+              placeholder="Enter Email"
+              formControlName="branchEmail"
+              required
+            />
+            <mat-error
+              *ngIf="
+                secondFormGroup.get('branchEmail').hasError('required') &&
+                secondFormGroup.get('branchEmail').touched
+              "
+              >Email is required.
+            </mat-error>
+            <mat-error
+              *ngIf="
+                secondFormGroup.get('branchEmail').hasError('email') &&
+                secondFormGroup.get('branchEmail').touched
+              "
+              >Email is not valid.
+            </mat-error>
+          </mat-form-field>
 
-                     <mat-form-field class = "tp-full-width">
-                        <mat-label>Phone Number</mat-label>
-                        <input matInput placeholder="Enter Phone Number" 
-                        formControlName="firstCtrl" required>
-                     </mat-form-field>
+          <mat-form-field class="tp-full-width">
+            <mat-label>Location</mat-label>
+            <input
+              matInput
+              placeholder="Enter Location"
+              formControlName="branchLocation"
+              required
+            />
+            <mat-error
+              *ngIf="
+                secondFormGroup.get('branchLocation').hasError('required') &&
+                secondFormGroup.get('branchLocation').touched
+              "
+              >location field is required.
+            </mat-error>
+          </mat-form-field>
 
-                    <div>
-                    <p>Go to a different step to see the error state</p>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
-                    </div>
-                </form>
-                </mat-step>
+          <mat-form-field class="tp-full-width">
+            <mat-label>Phone Number</mat-label>
+            <input
+              matInput
+              placeholder="Enter Phone Number"
+              formControlName="branchPhoneNumber"
+              required
+            />
+            <mat-error
+              *ngIf="
+                secondFormGroup.get('branchPhoneNumber').hasError('required') &&
+                secondFormGroup.get('branchPhoneNumber').touched
+              "
+              >PhoneNumber field is required.
+            </mat-error>
+          </mat-form-field>
 
-                 <mat-step [stepControl]="thirdFormGroup" erroMessage ="Email is required">
-                        
-                 </mat-step>
-                <mat-step>
-                <ng-template matStepLabel>Done</ng-template>
-                <p>You are now done.</p>
-                <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
-                </div>
-                </mat-step>
-            </mat-horizontal-stepper>
-    </div>
+          <div>
+            <p>Go to the next step to setup User</p>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="thirdFormGroup" errorMessage="Email is required">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>User Info</ng-template>
+          <mat-form-field class="tp-full-width">
+            <mat-label>User Name</mat-label>
+            <input
+              matInput
+              placeholder="Enter User Name"
+              formControlName="userName"
+              required
+            />
+            <mat-error
+              *ngIf="
+                thirdFormGroup.get('userName').hasError('required') &&
+                thirdFormGroup.get('userName').touched
+              "
+              >Username field is required.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="tp-full-width">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Enter Email"
+              formControlName="userEmail"
+              required
+            />
+
+            <mat-error
+              *ngIf="
+                thirdFormGroup.get('userEmail').hasError('required') &&
+                thirdFormGroup.get('userEmail').touched
+              "
+              >Email field is required.
+            </mat-error>
+            <mat-error
+              *ngIf="
+                thirdFormGroup.get('userEmail').hasError('email') &&
+                thirdFormGroup.get('userEmail').touched
+              "
+              >Email is not valid.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="tp-full-width">
+            <mat-label>Phone Number</mat-label>
+            <input
+              matInput
+              placeholder="Enter Phone Number"
+              formControlName="userPhoneNumber"
+              required
+            />
+            <mat-error
+              *ngIf="
+                thirdFormGroup.get('userEmail').hasError('email') &&
+                thirdFormGroup.get('userEmail').touched
+              "
+              >Email is not valid.
+            </mat-error>
+          </mat-form-field>
+
+          <div>
+            <p>Go to the final step to preview form</p>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Confirmation</ng-template>
+
+        <div class="card-header ">
+          <h4>Merchant Info</h4>
+        </div>
+
+        <div class="card-body">
+          <div class="row col-md-12 mb-4">
+            <div class="col-md-6">
+              <h6 class="text-muted">TransflowID</h6>
+              <!-- <h4>{{ getConnection(dataSourceFormGroup.get("service_id").value)?.service_name  }}</h4> -->
+            </div>
+            <div class="col-md-6">
+              <h6 class="text-muted">Merchant Name</h6>
+              <!-- <h4>{{ dataSourceFormGroup.get("frequency").value }}</h4> -->
+            </div>
+          </div>
+          <hr />
+          <div class="row col-md-12 mb-4">
+            <div class="col-md-6">
+              <h6 class="text-muted">Phone Number</h6>
+              <!-- <h4>{{ dataSourceFormGroup.get("query").value }}</h4> -->
+            </div>
+            <div class="col-md-6">
+              <h6 class="text-muted">Email</h6>
+              <!-- <h4>{{ dataSourceFormGroup.get("headers").value }}</h4> -->
+            </div>
+          </div>
+          <hr />
+          <div class="row col-md-12">
+            <div class="col-md-6">
+              <h6 class="text-muted">Schema</h6>
+              <!-- <h4>{{ dataSourceFormGroup.get("schema").value }}</h4> -->
+            </div>
+            <div class="col-md-6">
+              <h6 class="text-muted">Table</h6>
+              <!-- <h4>{{ dataSourceFormGroup.get("table").value }}</h4> -->
+            </div>
+          </div>
+        </div>
+        <div class="card-header ">
+          <h4>Branch Info</h4>
+        </div>
+        <div class="card-body">
+          <div class="row col-md-12 mb-4">
+            <div class="col-md-6">
+              <h6 class="text-muted">Branch Name</h6>
+              <!-- <h4>{{ getConnection(dataSourceFormGroup.get("service_id").value)?.service_name  }}</h4> -->
+            </div>
+            <div class="col-md-6">
+              <h6 class="text-muted">Branch Code</h6>
+              <!-- <h4>{{ dataSourceFormGroup.get("frequency").value }}</h4> -->
+            </div>
+          </div>
+          <hr />
+          <div class="row col-md-12 mb-4">
+            <div class="col-md-6">
+              <h6 class="text-muted">Email</h6>
+              <!-- <h4>{{ dataSourceFormGroup.get("query").value }}</h4> -->
+            </div>
+            <div class="col-md-6">
+              <h6 class="text-muted">Location</h6>
+              <!-- <h4>{{ dataSourceFormGroup.get("headers").value }}</h4> -->
+            </div>
+          </div>
+          <hr />
+          <div class="row col-md-12">
+            <div class="col-md-6">
+              <h6 class="text-muted">Phone Number</h6>
+              <!-- <h4>{{ dataSourceFormGroup.get("schema").value }}</h4> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="card-header ">
+          <h4>User Info</h4>
+        </div>
+        <div class="card-body">
+          <div class="row col-md-12 mb-4">
+            <div class="col-md-6">
+              <h6 class="text-muted">User Name</h6>
+              <!-- <h4>{{ getConnection(dataSourceFormGroup.get("service_id").value)?.service_name  }}</h4> -->
+            </div>
+            <div class="col-md-6">
+              <h6 class="text-muted">Email</h6>
+              <!-- <h4>{{ dataSourceFormGroup.get("frequency").value }}</h4> -->
+            </div>
+          </div>
+          <hr />
+          <div class="row col-md-12 mb-4">
+            <div class="col-md-6">
+              <h6 class="text-muted">Phone Number</h6>
+              <!-- <h4>{{ dataSourceFormGroup.get("query").value }}</h4> -->
+            </div>
+            <div class="col-md-6">
+              <h6 class="text-muted">Email</h6>
+              <!-- <h4>{{ dataSourceFormGroup.get("headers").value }}</h4> -->
+            </div>
+          </div>
+          <hr />
+        </div>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
 </div>
-  

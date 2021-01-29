@@ -1,36 +1,89 @@
-
-
 <div class="container text-center">
-  <div class="row">
-      <div class="col-12"> 
-      <a routerLink="/add_merchants">
-        <input type="button" class="btn btn-outline-primary float-right" value="create Customer"></a>
+  <div class="card">
+    <div class="row">
+      <div class="col-12">
+        <a routerLink="/add_merchants">
+          <input
+            type="button"
+            class="btn btn-outline-primary float-right"
+            value="create Customer"
+        /></a>
       </div>
-  </div>
-  <form id="search">
-    <div class="form-group form-inline">
-        Full text search: <input class="form-control ml-2" type="text" />
     </div>
-  </form>
-   <table class="table table-striped">
-      <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Country</th>
-            <th scope="col">Area</th>
-            <th scope="col">Population</th>
-          </tr>
-          </thead>
-      <tbody>
-        <tr *ngFor="let country of countries; index as i">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>
-            <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
-            {{ country.name }}
+    <!-- <form id="search">
+      <div class="form-group form-inline">
+        Full text search: <input class="form-control ml-2" type="text" />
+      </div>
+    </form> -->
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+    <p>Default pagination:</p>
+    <div class="course">
+      <!-- <div class="spinner-container" *ngIf="merchants">
+        <mat-spinner></mat-spinner>
+      </div> -->
+
+      <table
+        mat-table
+        [dataSource]="merchants"
+        class="mat-elevation-z8"
+        id="table"
+      >
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="transflow_id">
+          <th mat-header-cell *matHeaderCellDef>Transflow Id.</th>
+          <td mat-cell *matCellDef="let merchant">
+            {{ merchant.transflow_id }}
           </td>
-          <td>{{ country.area | number }}</td>
-          <td>{{ country.population | number }}</td>
-        </tr>
-        </tbody>
-   </table>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="merchant_name">
+          <th mat-header-cell *matHeaderCellDef>Merchant Name</th>
+          <td mat-cell *matCellDef="let merchant">
+            {{ merchant.merchant_name }}
+          </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Merchant Email</th>
+          <td mat-cell *matCellDef="let merchant">{{ merchant.email }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="phone_number">
+          <th mat-header-cell *matHeaderCellDef>Merchant Phone Number</th>
+          <td mat-cell *matCellDef="let merchant">
+            {{ merchant.phone_number }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          (click)="onRowClicked(row)"
+        ></tr>
+
+      </table>
+       <mat-paginator
+      [length]="length"
+      [pageSize]="pageSize"
+      (page)="onPaginateChange($event)"
+    >
+    </mat-paginator>
+     <!-- <ngb-pagination (pageChange) = "onPageChange($event)"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="length"
+    >
+  </ngb-pagination> -->
+    </div>
+  </div>
 </div>

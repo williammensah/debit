@@ -1,11 +1,35 @@
 
 #search {
-	padding-top: 50px;
+  padding-top: 50px;
+	padding-left: 50px;
 }
 .col-12 {
 	padding-left: 50px;
-	margin: 20px; 
+	margin: 20px;
 	position:absolute;
 	top: 10px;
-	right:0; 
+	right:0;
+}
+
+.card {
+  background: linear-gradient(-45deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.1));
+   width: 1000px;
+  height: 1000px;
+  position: relative;
+  margin: auto auto;
+  margin-top: 5%;
+  border-radius: 5px;
+  box-shadow: 2px 4px 6px rgba(55, 52, 73, 0.4), inset -2px -2px 4px rgba(255, 255, 255, 1);
+
+}
+ #table {
+  width: 100%;
+}
+td,th {
+  width: 25%;
+  text-align:left;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
 }
